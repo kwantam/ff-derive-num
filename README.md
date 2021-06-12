@@ -7,7 +7,7 @@ for [ff::Field] implementations derived with the [ff-derive] crate.
 [ff::Field]: https://docs.rs/ff
 [ff-derive]: https://docs.rs/ff-derive
 
-## Example
+## example
 
 ```rust
 use ff::PrimeField;         // ff should be used with the "derive" feature!
@@ -20,7 +20,7 @@ use ff_derive_num::Num;
 pub struct Ft([u64; 2]);
 ```
 
-## 
+## license
 
 Copyright 2021 Riad S. Wahby
 
