@@ -15,7 +15,21 @@
 // at your discretion.
 #![deny(missing_docs)]
 
-/*! Derive Num for ff::Field types */
+/*! Derive ::num_traits::Num and associated traits for ::ff::Field types derived using ::ff_derive
+
+# example
+
+```rust
+use ff::PrimeField;         // ff should be used with the "derive" feature!
+use ff_derive_num::Num;
+
+#[derive(PrimeField,Num)]
+#[PrimeFieldModulus = "70386805592835581672624750593"]
+#[PrimeFieldGenerator = "17"]
+#[PrimeFieldReprEndianness = "little"]
+pub struct Ft([u64; 2]);
+```
+*/
 
 use quote::quote;
 use syn::DeriveInput;
