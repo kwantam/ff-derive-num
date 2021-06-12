@@ -38,10 +38,10 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
                 }
 
                 if s == "0" {
-                    return Ok(Self::zero());
+                    return Ok(<Self as ::ff::Field>::zero());
                 }
 
-                let mut res = Self::zero();
+                let mut res = <Self as ::ff::Field>::zero();
                 let radix = Self::from(r as u64);
                 let mut first_digit = true;
                 for c in s.chars() {
@@ -91,7 +91,8 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
 
             #[must_use]
             fn div(self, rhs: Self) -> Self {
-                self * rhs.invert().unwrap()
+                use ::ff::Field;
+                self * <Self as ::ff::Field>::invert(&rhs).unwrap()
             }
         }
 
@@ -99,7 +100,7 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
             type Output = Self;
 
             fn div(self, rhs: &Self) -> Self {
-                self * rhs.invert().unwrap()
+                self * <Self as ::ff::Field>::invert(rhs).unwrap()
             }
         }
 
@@ -108,11 +109,11 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
 
             #[must_use]
             fn rem(self, rhs: Self) -> Self {
-                if rhs.is_zero() {
+                if <Self as ::ff::Field>::is_zero(&self) {
                     panic!("divide by zero");
                 }
 
-                Self::zero();
+                <Self as ::ff::Field>::zero()
             }
         }
 
@@ -121,11 +122,11 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
 
             #[must_use]
             fn rem(self, rhs: &Self) -> Self {
-                if rhs.is_zero() {
+                if <Self as ::ff::Field>::is_zero(&self) {
                     panic!("divide by zero");
                 }
 
-                Self::zero();
+                <Self as ::ff::Field>::zero()
             }
         }
 
