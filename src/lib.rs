@@ -100,6 +100,7 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
             }
         }
 
+        #[allow(clippy::suspicious_arithmetic_impl)]
         impl ::std::ops::Div<#ident> for #ident {
             type Output = Self;
 
@@ -110,6 +111,7 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
             }
         }
 
+        #[allow(clippy::suspicious_arithmetic_impl)]
         impl ::std::ops::Div<&#ident> for #ident {
             type Output = Self;
 
