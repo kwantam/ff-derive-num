@@ -86,7 +86,7 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
             }
 
             fn is_zero(&self) -> bool {
-                <Self as ::ff::Field>::is_zero(self)
+                bool::from(<Self as ::ff::Field>::is_zero(self))
             }
         }
 
@@ -125,7 +125,7 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
 
             #[must_use]
             fn rem(self, rhs: Self) -> Self {
-                if <Self as ::ff::Field>::is_zero(&self) {
+                if bool::from(<Self as ::ff::Field>::is_zero(&self)) {
                     panic!("divide by zero");
                 }
 
@@ -138,7 +138,7 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
 
             #[must_use]
             fn rem(self, rhs: &Self) -> Self {
-                if <Self as ::ff::Field>::is_zero(&self) {
+                if bool::from(<Self as ::ff::Field>::is_zero(&self)) {
                     panic!("divide by zero");
                 }
 
