@@ -1,6 +1,6 @@
 [package]
 name = "ff-derive-num"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2018"
 authors = ["kwantam <kwantam@gmail.com>"]
 description = "Procedural macro library to add the Num trait to Field implementations for ff"
@@ -18,3 +18,6 @@ num-traits = "0.2"
 proc-macro2 = "1"
 quote = "1"
 syn = "1"
+
+[dev-dependencies]
+ff = { version = "0.13", features = ["derive"] }
