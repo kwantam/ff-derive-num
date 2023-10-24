@@ -52,10 +52,10 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
                 }
 
                 if s == "0" {
-                    return Ok(<Self as ::ff::Field>::zero());
+                    return Ok(<Self as ::ff::Field>::ZERO);
                 }
 
-                let mut res = <Self as ::ff::Field>::zero();
+                let mut res = <Self as ::ff::Field>::ZERO;
                 let radix = Self::from(r as u64);
                 let mut first_digit = true;
                 for c in s.chars() {
@@ -82,7 +82,7 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
 
         impl ::num_traits::Zero for #ident {
             fn zero() -> Self {
-                <Self as ::ff::Field>::zero()
+                <Self as ::ff::Field>::ZERO
             }
 
             fn is_zero(&self) -> bool {
@@ -92,11 +92,11 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
 
         impl ::num_traits::One for #ident {
             fn one() -> Self {
-                <Self as ::ff::Field>::one()
+                <Self as ::ff::Field>::ONE
             }
 
             fn is_one(&self) -> bool {
-                self == &<Self as ::ff::Field>::one()
+                self == &<Self as ::ff::Field>::ONE
             }
         }
 
@@ -129,7 +129,7 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
                     panic!("divide by zero");
                 }
 
-                <Self as ::ff::Field>::zero()
+                <Self as ::ff::Field>::ZERO
             }
         }
 
@@ -142,7 +142,7 @@ pub fn num_traits_num(input: proc_macro::TokenStream) -> proc_macro::TokenStream
                     panic!("divide by zero");
                 }
 
-                <Self as ::ff::Field>::zero()
+                <Self as ::ff::Field>::ZERO
             }
         }
 
